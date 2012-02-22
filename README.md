@@ -1,7 +1,7 @@
 # Passport-OpenStreetMap
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
-with OpenStreetMap using the OAuth 1.0a API.
+with [OpenStreetMap](http://www.openstreetmap.org/) using the OAuth 1.0a API.
 
 ## Installation
 
@@ -58,6 +58,8 @@ For a complete, working example, refer to the [login example](https://github.com
 
     $ npm install --dev
     $ make test
+
+[![Build Status](https://secure.travis-ci.org/jaredhanson/passport-openstreetmap.png)](http://travis-ci.org/jaredhanson/passport-openstreetmap)
 
 ## Credits
 
