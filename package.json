@@ -1,6 +1,6 @@
 {
   "name": "passport-openstreetmap",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "OpenStreetMap authentication strategy for Passport.",
   "keywords": ["passport", "openstreetmap", "auth", "authn", "authentication", "identity"],
   "repository": {
