@@ -34,6 +34,24 @@ well as `options` specifying a consumer key, consumer secret, and callback URL.
       }
     ));
 
+You can also configure the strategy to use the OSM developement API.
+
+    passport.use(new OpenStreetMapStrategy({
+        consumerKey: OPENSTREETMAP_CONSUMER_KEY,
+        consumerSecret: OPENSTREETMAP_CONSUMER_SECRET,
+        callbackURL: "http://127.0.0.1:3000/auth/openstreetmap/callback"
+        requestTokenURL: 'http://api06.dev.openstreetmap.org/oauth/request_token',
+        accessTokenURL: 'http://api06.dev.openstreetmap.org/oauth/access_token',
+        userAuthorizationURL: 'http://api06.dev.openstreetmap.org/oauth/authorize',
+        userProfileURL: 'http://api06.dev.openstreetmap.org/api/0.6/user/details',
+      },
+      function(token, tokenSecret, profile, done) {
+        User.findOrCreate({ openstreetmapId: profile.id }, function (err, user) {
+          return done(err, user);
+        });
+      }
+    ));
+
 #### Authenticate Requests
 
 Use `passport.authenticate()`, specifying the `'openstreetmap'` strategy, to
@@ -45,7 +63,7 @@ application:
     app.get('/auth/openstreetmap',
       passport.authenticate('openstreetmap'));
 
-    app.get('/auth/openstreetmap/callback', 
+    app.get('/auth/openstreetmap/callback',
       passport.authenticate('openstreetmap', { failureRedirect: '/login' }),
       function(req, res) {
         // Successful authentication, redirect home.
