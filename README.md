@@ -22,17 +22,19 @@ OpenStreetMap account and OAuth tokens.  The strategy requires a `verify`
 callback, which accepts these credentials and calls `done` providing a user, as
 well as `options` specifying a consumer key, consumer secret, and callback URL.
 
-    passport.use(new OpenStreetMapStrategy({
-        consumerKey: OPENSTREETMAP_CONSUMER_KEY,
-        consumerSecret: OPENSTREETMAP_CONSUMER_SECRET,
-        callbackURL: "http://127.0.0.1:3000/auth/openstreetmap/callback"
-      },
-      function(token, tokenSecret, profile, done) {
-        User.findOrCreate({ openstreetmapId: profile.id }, function (err, user) {
-          return done(err, user);
-        });
-      }
-    ));
+```js
+passport.use(new OpenStreetMapStrategy({
+    consumerKey: OPENSTREETMAP_CONSUMER_KEY,
+    consumerSecret: OPENSTREETMAP_CONSUMER_SECRET,
+    callbackURL: "http://127.0.0.1:3000/auth/openstreetmap/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    User.findOrCreate({ openstreetmapId: profile.id }, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
+```
 
 #### Authenticate Requests
 
@@ -42,15 +44,17 @@ authenticate requests.
 For example, as route middleware in an [Express](http://expressjs.com/)
 application:
 
-    app.get('/auth/openstreetmap',
-      passport.authenticate('openstreetmap'));
+```js
+app.get('/auth/openstreetmap',
+  passport.authenticate('openstreetmap'));
 
-    app.get('/auth/openstreetmap/callback', 
-      passport.authenticate('openstreetmap', { failureRedirect: '/login' }),
-      function(req, res) {
-        // Successful authentication, redirect home.
-        res.redirect('/');
-      });
+app.get('/auth/openstreetmap/callback', 
+  passport.authenticate('openstreetmap', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+```
 
 ## Examples
 
