@@ -1,3 +1,9 @@
+# Deprecated
+
+This library does only work with passport <= 0.4.x, due to the breaking change in 0.5.0.
+OpenStreetMap supports Oauth2. so we recommend to use Oauth2.
+
+
 # Passport-OpenStreetMap
 
 [Passport](https://github.com/jaredhanson/passport) strategy for authenticating
